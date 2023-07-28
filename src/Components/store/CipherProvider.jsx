@@ -60,7 +60,8 @@ const CipherProvider = (props) => {
         
         if (tempCipherText.length < 16) {
             const addedCipherText = addCipherText(tempCipherText.length, newPlainAlphabet);
-            const cipherText = convertToStrings(tempCipherText, addedCipherText);
+            let cipherText = convertToStrings(tempCipherText, addedCipherText);
+            cipherText = reverseString(cipherText);
             setAlphabetArray(newPlainAlphabet);
             setCipherData(cipherText);
         } else if (tempCipherText.length > 16) {
@@ -78,7 +79,8 @@ const CipherProvider = (props) => {
 
             cipherText = tempCipherText.map(num => num.toString(16));
             cipherText = cipherText.toString().replace(/,/g, "");
-
+            cipherText = reverseString(cipherText);
+            
             setCipherData(cipherText);
         } else {
             cipherText = tempCipherText.map(num => num.toString(16));
